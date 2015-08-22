@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/schedulePadding">
+
+    <LinearLayout
+        android:id="@+id/cardBlackOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/schedulePadding"
+        android:paddingTop="@dimen/schedulePadding"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/txtIndex"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/schedulePadding"
+            android:text="AAK" />
+
+        <TextView
+            android:id="@+id/txtDetail"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/schedulePadding"
+            android:text="Trưng Nữ Vương" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

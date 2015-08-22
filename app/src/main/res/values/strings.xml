@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Lịch cắt điện</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_load">Tải dữ liệu</string>
+    <string name="global_ok">OK</string>
+    <string name="global_save">Lưu</string>
+    <string name="global_cancel">Hủy</string>
+    <string name="global_accept">Chấp nhận</string>
+    <string name="global_loading">Đang tải dữ liệu &#8230;</string>
+    <string name="global_wait">Vui lòng đợi &#8230;</string>
+    <string name="view_schedule">View Schedule</string>
+    <string name="menu_filter">Lọc</string>
+    <string name="menu_province">Chọn tỉnh/thành phố khác</string>
+    <string name="menu_setting">Cài đặt</string>
+
+    <string name="action_sticky">Sticky headers</string>
+    <string name="menu_header_mode">Header position</string>
+    <string name="action_header_inline">Inline</string>
+    <string name="action_header_start">Start</string>
+    <string name="action_header_end">End</string>
+    <string name="action_header_overlay">Overlay headers</string>
+    <string name="menu_fixed_margins">Fixed margins</string>
+    <string name="menu_random_scroll">Random scroll</string>
+    <string name="menu_random_smooth_scroll">Random smooth scroll</string>
+
+    <string name="dialog_setting">Cài đặt</string>
+    <string name="dialog_setting_message">Lấy dữ liệu mới khi</string>
+    <string name="dialog_setting_wifi">Có Wifi</string>
+    <string name="dialog_setting_mobile">Có Mobile Data (GPRS, 3G, &#8230;)</string>
+    <string name="dialog_setting_wifi_mobile">Có Wifi hoặc Mobile Data</string>
+
+    <string name="dialog_province">Chọn tỉnh / thành phố</string>
+
+    <string name="error">Lỗi</string>
+    <string name="error_network_message">Vui lòng kết nối Internet để tải dữ liệu</string>
+    <string name="error_network_message2">Không có dữ liệu hoặc dữ liệu đã cũ, vui lòng kết nối Internet để tải dữ liệu</string>
+    <string name="error_network_message3">Loại kết nối Internet không phù hợp, thay đổi kiểu kết nối ?</string>
+
+    <string name="error_no_internet">Không có kết nối Internet</string>
+    <string name="error_type_internet">Loại kết nối Internet không phù hợp</string>
+
+    <string name="schedule_no_data">Không có dữ liệu về \n lịch cắt điện trong thời gian này</string>
+</resources>

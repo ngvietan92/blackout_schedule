@@ -1,0 +1,33 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">36.44dp</dimen>
+    <dimen name="activity_vertical_margin">36.44dp</dimen>
+
+    <dimen name="material_dialog_min_width">637.78dp</dimen>
+    <dimen name="material_dialog_padding">54.67dp</dimen>
+    <dimen name="material_dialog_title_margin_top">54.67dp</dimen>
+    <dimen name="material_dialog_title_margin_content">45.56dp</dimen>
+    <dimen name="material_dialog_action_height">118.44dp</dimen>
+    <dimen name="material_dialog_action_margin">18.22dp</dimen>
+    <dimen name="material_dialog_action_margin_content">54.67dp</dimen>
+    <dimen name="material_dialog_button_height">82.00dp</dimen>
+    <dimen name="material_dialog_button_margin">18.22dp</dimen>
+
+    <dimen name="material_list_primary_textSize">36.44sp</dimen>
+    <dimen name="material_list_line_height">109.33dp</dimen>
+    <dimen name="material_list_padding_left_right">36.44dp</dimen>
+    <dimen name="material_list_padding_top_bottom">41.00dp</dimen>
+
+    <dimen name="header_height">320.33dp</dimen>
+    <dimen name="home_padding1">45.56dp</dimen>
+    <dimen name="scheduleTextSize">34.17sp</dimen>
+    <dimen name="schedulePadding">11.39dp</dimen>
+    <dimen name="schedule_header_width">227.78dp</dimen>
+
+    <dimen name="spinner_toolbar_minWidth">455.56dp</dimen>
+    <dimen name="spinner_toolbar_paddingLeft">36.44dp</dimen>
+    <dimen name="spinner_toolbar_paddingRight">9.11dp</dimen>
+    <dimen name="spinner_toolbar_paddingDrawable">18.22dp</dimen>
+    <dimen name="spinner_toolbar_dropdown_height">113.89dp</dimen>
+    <dimen name="spinner_toolbar_vertical_offset">-113.89dp</dimen>
+</resources>

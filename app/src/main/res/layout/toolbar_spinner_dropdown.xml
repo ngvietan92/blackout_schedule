@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtDropDown"
+        style="@android:style/TextAppearance.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/spinner_toolbar_dropdown_height"
+        android:drawablePadding="@dimen/spinner_toolbar_paddingDrawable"
+        android:gravity="center_vertical|start"
+        android:minWidth="@dimen/spinner_toolbar_minWidth"
+        android:paddingLeft="@dimen/spinner_toolbar_paddingLeft"
+        android:paddingRight="@dimen/spinner_toolbar_paddingLeft"
+        android:textColor="#ff333333" />
+</LinearLayout>

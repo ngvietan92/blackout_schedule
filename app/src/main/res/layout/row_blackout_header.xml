@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layoutDirection="locale"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/schedulePadding"
+    android:paddingRight="@dimen/schedulePadding"
+    android:paddingTop="@dimen/schedulePadding"
+    app:slm_headerDisplay="inline|sticky"
+    app:slm_isHeader="true"
+    app:slm_section_headerMarginStart="@dimen/schedule_header_width">
+
+    <TextView
+        android:id="@+id/txtStart"
+        style="@style/ScheduleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingRight="@dimen/schedulePadding" />
+
+
+    <TextView
+        android:id="@+id/txtEnd"
+        style="@style/ScheduleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="16:00" />
+</LinearLayout>

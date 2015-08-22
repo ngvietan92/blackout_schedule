@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/dialog_rootView"
+    style="@style/MaterialDialog"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/MaterialDialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_setting" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        style="@style/MaterialDialogContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/MaterialDialogContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="@string/dialog_setting_message" />
+
+        <RadioGroup
+            android:id="@+id/rgrSetting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rbtWifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/dialog_setting_wifi" />
+
+            <RadioButton
+                android:id="@+id/rbtMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_setting_mobile" />
+
+            <RadioButton
+                android:id="@+id/rbtBoth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_setting_wifi_mobile" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MaterialDialogAction"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/MaterialDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/global_cancel"
+            android:textColor="?attr/colorAccent" />
+
+        <Button
+            android:id="@+id/btnAccept"
+            style="@style/MaterialDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/global_save"
+            android:textColor="?attr/colorAccent" />
+    </LinearLayout>
+
+</LinearLayout>

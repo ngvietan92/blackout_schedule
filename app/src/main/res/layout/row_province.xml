@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:id="@android:id/text1"
+    style="@style/MaterialDialogContent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/material_list_padding_top_bottom"
+    android:paddingLeft="@dimen/material_list_padding_left_right"
+    android:paddingRight="@dimen/material_list_padding_left_right"
+    android:paddingTop="@dimen/material_list_padding_top_bottom"
+    android:textSize="@dimen/material_list_primary_textSize" />
