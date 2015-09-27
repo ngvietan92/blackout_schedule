@@ -346,6 +346,27 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
                     loadForeground = false;
                 }
             });
+        } else if (!isSuccess && loadForeground) {
+            AlertDialog dialog = CommonMethods.getMessage(this,
+                    getString(R.string.error),
+                    getString(R.string.error_network_message3),
+                    getString(R.string.global_yes),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            loadData = true;
+                            loadForeground = true;
+                            initData();
+                        }
+                    },
+                    getString(R.string.global_no),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+            dialog.show();
         }
     }
 

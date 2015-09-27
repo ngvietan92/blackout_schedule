@@ -7,6 +7,8 @@
     <string name="global_ok">OK</string>
     <string name="global_save">Lưu</string>
     <string name="global_cancel">Hủy</string>
+    <string name="global_yes">Có</string>
+    <string name="global_no">Không</string>
     <string name="global_accept">Chấp nhận</string>
     <string name="global_loading">Đang tải dữ liệu &#8230;</string>
     <string name="global_wait">Vui lòng đợi &#8230;</string>
@@ -37,6 +39,7 @@
     <string name="error_network_message">Vui lòng kết nối Internet để tải dữ liệu</string>
     <string name="error_network_message2">Không có dữ liệu hoặc dữ liệu đã cũ, vui lòng kết nối Internet để tải dữ liệu</string>
     <string name="error_network_message3">Loại kết nối Internet không phù hợp, thay đổi kiểu kết nối ?</string>
+    <string name="error_network_message4">Lỗi khi tải dữ liệu, bạn có muốn thử lại ?</string>
 
     <string name="error_no_internet">Không có kết nối Internet</string>
     <string name="error_type_internet">Loại kết nối Internet không phù hợp</string>

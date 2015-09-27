@@ -65,7 +65,7 @@ public class CommonMethods {
         SharedPreferences.Editor editor = sharedPref.edit();
         if (district != null) {
             editor.putLong(Constants.PREF_DISTRICT, district.getId());
-        }else{
+        } else {
             editor.putLong(Constants.PREF_DISTRICT, -1);
         }
         editor.commit();
@@ -132,4 +132,15 @@ public class CommonMethods {
         return builder.create();
     }
 
+    public static AlertDialog getMessage(Context context, String title, String message,
+            String acceptButton, DialogInterface.OnClickListener acceptListener,
+            String cancelButton, DialogInterface.OnClickListener cancelListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context,
+                R.style.AppCompatDialogStyle);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(acceptButton, acceptListener);
+        builder.setNegativeButton(cancelButton, cancelListener);
+        return builder.create();
+    }
 }
