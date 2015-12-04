@@ -9,6 +9,8 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="alertDialogStyle">@style/AppCompatDialogStyle</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
@@ -74,5 +76,10 @@
         <item name="android:dropDownSelector">?android:selectableItemBackground</item>
         <item name="android:divider">@null</item>
         <item name="overlapAnchor">true</item>
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@android:color/white</item>
+        <item name="queryHint">@string/search_hint</item>
     </style>
 </resources>

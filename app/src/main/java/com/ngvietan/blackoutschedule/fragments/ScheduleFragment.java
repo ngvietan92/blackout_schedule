@@ -3,12 +3,13 @@ package com.ngvietan.blackoutschedule.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ngvietan.blackoutschedule.R;
-import com.ngvietan.blackoutschedule.adapters.BlackoutAdapter;
+import com.ngvietan.blackoutschedule.adapters.Blackout2Adapter;
 import com.ngvietan.blackoutschedule.common.CommonVariables;
 import com.ngvietan.blackoutschedule.data.BlackoutItemDao;
 import com.ngvietan.blackoutschedule.models.BlackoutItem;
@@ -21,7 +22,8 @@ import java.util.List;
  */
 public class ScheduleFragment extends BaseFragment {
 
-    public static final String TITLE = "title";
+    public static final String DAY = "day";
+    public static final String CODE = "code";
 
     private LinearLayout llMessage;
     private LinearLayout llLoading;
@@ -29,13 +31,23 @@ public class ScheduleFragment extends BaseFragment {
 
     private RecyclerView rcvSchedule;
     private List<BlackoutItem> blackoutItems;
-    private BlackoutAdapter adapter;
+    private Blackout2Adapter adapter;
     private String day;
+    private String code;
 
-    public static ScheduleFragment newInstance(String text) {
+    public static ScheduleFragment newInstance(String day) {
         ScheduleFragment fragment = new ScheduleFragment();
         Bundle params = new Bundle();
-        params.putString(TITLE, text);
+        params.putString(DAY, day);
+        fragment.setArguments(params);
+        return fragment;
+    }
+
+    public static ScheduleFragment newInstance(String day, String code) {
+        ScheduleFragment fragment = new ScheduleFragment();
+        Bundle params = new Bundle();
+        params.putString(DAY, day);
+        params.putString(CODE, code);
         fragment.setArguments(params);
         return fragment;
     }
@@ -49,16 +61,24 @@ public class ScheduleFragment extends BaseFragment {
     protected void initComponents(View v) {
         super.initComponents(v);
 
+
         llMessage = (LinearLayout) v.findViewById(R.id.llMessage);
         llLoading = (LinearLayout) v.findViewById(R.id.llLoading);
         txtNoData = (TextView) v.findViewById(R.id.txtNoData);
 
-        day = getArguments().getString(TITLE);
+        day = getArguments().getString(DAY);
+        code = getArguments().getString(CODE);
+        Log.i("Fragment", day + " " + code);
         rcvSchedule = (RecyclerView) v.findViewById(R.id.rcvSchedule);
 
-        blackoutItems = BlackoutItemDao.getScheduleOfDay(CommonVariables.selectedProvince,
-                CommonVariables.selectedDistrict, day);
-        adapter = new BlackoutAdapter(getActivity(), blackoutItems);
+        if (code != null && !code.isEmpty()) {
+            blackoutItems = BlackoutItemDao.getScheduleOfDay(CommonVariables.selectedProvince, day,
+                    code);
+        } else {
+            blackoutItems = BlackoutItemDao.getScheduleOfDay(CommonVariables.selectedProvince,
+                    CommonVariables.selectedDistrict, day);
+        }
+        adapter = new Blackout2Adapter(getActivity(), blackoutItems);
         rcvSchedule.setItemAnimator(new DefaultItemAnimator());
         rcvSchedule.setAdapter(adapter);
         rcvSchedule.setLayoutManager(new LayoutManager(getActivity()));

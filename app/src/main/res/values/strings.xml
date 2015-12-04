@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Lịch cắt điện</string>
+    <string name="app_name">Lịch cắt điện xứ Quảng</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_load">Tải dữ liệu</string>
+    <string name="action_search">Tìm kiếm</string>
     <string name="global_ok">OK</string>
     <string name="global_save">Lưu</string>
     <string name="global_cancel">Hủy</string>
@@ -45,4 +46,8 @@
     <string name="error_type_internet">Loại kết nối Internet không phù hợp</string>
 
     <string name="schedule_no_data">Không có dữ liệu về \n lịch cắt điện trong thời gian này</string>
+    <string name="search_no_data">Không có dữ liệu về \n lịch cắt điện của trạm biến áp trong tuần</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7318646425575493/6367904764</string>
+
+    <string name="search_hint">Mã số trạm biến áp / tên khu vực</string>
 </resources>

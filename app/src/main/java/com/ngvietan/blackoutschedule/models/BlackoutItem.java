@@ -33,18 +33,22 @@ public class BlackoutItem extends Model {
     @Column(name = "End")
     public String end;
 
+    @Column(name = "EDetailNoAccent")
+    public String eDetailNoAccent;
+
     public BlackoutItem() {
         super();
     }
 
     public BlackoutItem(Province province, String day, District district, String eIndex,
-            String eDetail, String start, String end) {
+            String eDetail, String eDetailNoAccent, String start, String end) {
         super();
         this.province = province;
         this.day = day;
         this.district = district;
         this.eIndex = eIndex;
         this.eDetail = eDetail;
+        this.eDetailNoAccent = eDetailNoAccent;
         this.start = start;
         this.end = end;
     }

@@ -130,4 +130,18 @@ public class Utils {
         Intent intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
         activity.startActivityForResult(intent, OPEN_WIRELESS);
     }
+
+    /**
+     * Remove accent of string
+     * @param s
+     * @return
+     */
+    public static String removeAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        String noAccent = pattern.matcher(temp).replaceAll("");
+        noAccent = noAccent.replace("Đ", "D");
+        noAccent = noAccent.replace("đ", "d");
+        return noAccent;
+    }
 }

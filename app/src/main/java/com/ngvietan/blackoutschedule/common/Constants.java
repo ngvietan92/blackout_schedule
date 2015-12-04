@@ -23,6 +23,8 @@ public class Constants {
     public static final SimpleDateFormat DATE_WEB_FORMAT_2 = new SimpleDateFormat("dd/MM/yy",
             new Locale("vi", "VN"));
 
+    public static final SimpleDateFormat DATE_DB_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
+
     public static final String SETTING_WIFI = "wifi";
 
     public static final String SETTING_MOBILE = "mobile";

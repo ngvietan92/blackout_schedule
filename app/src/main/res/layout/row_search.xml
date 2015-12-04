@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/material_list_padding_top_bottom"
+        android:paddingLeft="@dimen/material_list_padding_left_right"
+        android:paddingRight="@dimen/material_list_padding_left_right"
+        android:paddingTop="@dimen/material_list_padding_top_bottom">
+
+        <TextView
+            android:id="@+id/txtIndex"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AAK"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtDetail"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trưng Nữ Vương"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray" />
+</LinearLayout>

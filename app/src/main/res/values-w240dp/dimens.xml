@@ -16,7 +16,7 @@
     <dimen name="material_list_primary_textSize">10.67sp</dimen>
     <dimen name="material_list_line_height">32.00dp</dimen>
     <dimen name="material_list_padding_left_right">10.67dp</dimen>
-    <dimen name="material_list_padding_top_bottom">12.00dp</dimen>
+    <dimen name="material_list_padding_top_bottom">6.67dp</dimen>
 
     <dimen name="header_height">128.00dp</dimen>
     <dimen name="home_padding1">13.33dp</dimen>
@@ -30,4 +30,6 @@
     <dimen name="spinner_toolbar_paddingDrawable">5.33dp</dimen>
     <dimen name="spinner_toolbar_dropdown_height">33.33dp</dimen>
     <dimen name="spinner_toolbar_vertical_offset">-33.33dp</dimen>
+
+    <dimen name="actionbar_icon_padding">8dp</dimen>
 </resources>

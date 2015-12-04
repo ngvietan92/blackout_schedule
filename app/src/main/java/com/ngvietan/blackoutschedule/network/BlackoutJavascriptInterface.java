@@ -11,6 +11,7 @@ import com.ngvietan.blackoutschedule.interfaces.OnLoadSuccessCallback;
 import com.ngvietan.blackoutschedule.models.BlackoutItem;
 import com.ngvietan.blackoutschedule.models.District;
 import com.ngvietan.blackoutschedule.models.Province;
+import com.ngvietan.blackoutschedule.utils.Utils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -80,6 +81,12 @@ public class BlackoutJavascriptInterface {
             Elements days = row.getElementsByAttributeValueContaining("id", "lblLichNgay");
             if (days != null && days.size() > 0) {
                 day = days.get(0).text();
+                try {
+                    Date date = Constants.DATE_WEB_FORMAT.parse(day);
+                    day = Constants.DATE_DB_FORMAT.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
             // district
@@ -109,31 +116,34 @@ public class BlackoutJavascriptInterface {
             // eIndex
             Elements eIndexes = row.getElementsByAttributeValueContaining("id", "lblMa_LoTrinh");
             if (eIndexes != null && eIndexes.size() > 0) {
-                eIndex = eIndexes.get(0).text();
+                eIndex = eIndexes.get(0).text().trim();
             }
 
             // eDetail
             Elements eDetails = row.getElementsByAttributeValueContaining("id", "lblTen_LoTrinh");
             if (eDetails != null && eDetails.size() > 0) {
-                eDetail = eDetails.get(0).text();
+                eDetail = eDetails.get(0).text().trim();
             }
 
             // start
             Elements starts = row.getElementsByAttributeValueContaining("id", "lblTu");
             if (starts != null && starts.size() > 0) {
-                start = starts.get(0).text();
+                start = starts.get(0).text().trim();
             }
 
             // end
             Elements ends = row.getElementsByAttributeValueContaining("id", "lblDen");
             if (ends != null && ends.size() > 0) {
-                end = ends.get(0).text();
+                end = ends.get(0).text().trim();
             }
 
-            BlackoutItem item = new BlackoutItem(CommonVariables.selectedProvince, day, district,
-                    eIndex, eDetail, start, end);
-            if (!blackOutItems.contains(item)) {
-                items.add(item);
+            if (!eIndex.isEmpty() && !eDetail.isEmpty()) {
+                String eDetailNoAccent = Utils.removeAccent(eDetail);
+                BlackoutItem item = new BlackoutItem(CommonVariables.selectedProvince, day,
+                        district, eIndex, eDetail, eDetailNoAccent, start, end);
+                if (!blackOutItems.contains(item)) {
+                    items.add(item);
+                }
             }
         }
 
@@ -199,7 +209,7 @@ public class BlackoutJavascriptInterface {
                         day = ((TextNode) list.get(0)).text();
                         try {
                             Date date = Constants.DATE_WEB_FORMAT_2.parse(day);
-                            day = Constants.DATE_WEB_FORMAT.format(date);
+                            day = Constants.DATE_DB_FORMAT.format(date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -215,7 +225,7 @@ public class BlackoutJavascriptInterface {
 
                 // eDetail
                 Element eDetails = content.get(1);
-                eDetail = eDetails.text();
+                eDetail = eDetails.text().trim();
 
                 String[] splitDetail = eDetail.split(",");
                 for (int i = 0; i < splitDetail.length; i++) {
@@ -227,13 +237,14 @@ public class BlackoutJavascriptInterface {
                     String[] details = indexDetail.split(":");
                     BlackoutItem item;
                     if (details.length == 2) {
+                        String eDetailNoAccent = Utils.removeAccent(details[1]);
                         item = new BlackoutItem(CommonVariables.selectedProvince, day,
                                 district,
-                                details[0], details[1], start, end);
+                                details[0], details[1], eDetailNoAccent, start, end);
                     } else {
                         item = new BlackoutItem(CommonVariables.selectedProvince, day,
                                 district,
-                                details[0], "", start, end);
+                                details[0], "", "", start, end);
                     }
                     if (!blackOutItems.contains(item)) {
                         items.add(item);

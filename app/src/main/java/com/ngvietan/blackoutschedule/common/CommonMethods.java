@@ -1,11 +1,11 @@
 package com.ngvietan.blackoutschedule.common;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 
 import com.activeandroid.ActiveAndroid;
 import com.ngvietan.blackoutschedule.R;
@@ -124,8 +124,7 @@ public class CommonMethods {
 
     public static AlertDialog getMessage(Context context, String title, String message,
             DialogInterface.OnClickListener listener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context,
-                R.style.AppCompatDialogStyle);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setPositiveButton(context.getString(R.string.global_ok), listener);
@@ -135,8 +134,7 @@ public class CommonMethods {
     public static AlertDialog getMessage(Context context, String title, String message,
             String acceptButton, DialogInterface.OnClickListener acceptListener,
             String cancelButton, DialogInterface.OnClickListener cancelListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context,
-                R.style.AppCompatDialogStyle);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setPositiveButton(acceptButton, acceptListener);

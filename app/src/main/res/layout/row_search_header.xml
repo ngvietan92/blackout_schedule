@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:slm_headerDisplay="inline|sticky"
+    app:slm_isHeader="true">
+
+    <!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal"--><!--android:paddingLeft="@dimen/material_list_padding_left_right"--><!--android:paddingRight="@dimen/material_list_padding_left_right">-->
+
+    <!--<ImageView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_gravity="center_vertical"--><!--android:src="@drawable/ic_calendar_black" />-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_marginLeft="@dimen/material_list_padding_top_bottom"--><!--android:paddingBottom="@dimen/material_list_padding_top_bottom"--><!--android:paddingTop="@dimen/material_list_padding_top_bottom"--><!--android:text="Thứ 2, ngày 25 tháng 11 năm 2015"--><!--android:textColor="@android:color/black"--><!--android:textSize="@dimen/material_list_primary_textSize" />--><!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/material_list_padding_top_bottom"
+        android:paddingLeft="@dimen/material_list_padding_left_right"
+        android:paddingRight="@dimen/material_list_padding_left_right"
+        android:paddingTop="@dimen/material_list_padding_top_bottom">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_access_time_white" />
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/material_list_padding_left_right"
+            android:text="15:00 - 20:00"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/material_list_primary_textSize" />
+    </LinearLayout>
+</LinearLayout>

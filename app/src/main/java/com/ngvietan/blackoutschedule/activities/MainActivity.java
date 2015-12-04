@@ -1,7 +1,8 @@
 package com.ngvietan.blackoutschedule.activities;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,7 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,9 +27,12 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.ngvietan.blackoutschedule.R;
 import com.ngvietan.blackoutschedule.adapters.DistrictSpinnerAdapter;
 import com.ngvietan.blackoutschedule.adapters.SchedulePagerAdapter;
@@ -68,6 +75,10 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
     private ImageView imvHeader;
     private View spinnerContainer;
 
+    private LinearLayout searchLayout;
+    private SearchView searchView;
+    private ImageView btnBack;
+
     private SchedulePagerAdapter scheduleAdapter;
     private ArrayList<Date> days;
 
@@ -82,24 +93,44 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
     @Override
     protected void initComponents() {
         super.initComponents();
+
         container = (CoordinatorLayout) findViewById(R.id.container);
         webView = (WebView) findViewById(R.id.webViewContent);
         toolbar = (Toolbar) findViewById(R.id.toolBar);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         pagerSchedule = (ViewPager) findViewById(R.id.pagerSchedule);
-
+        searchLayout = (LinearLayout) findViewById(R.id.searchLayout);
+        searchView = (SearchView) findViewById(R.id.searchView);
+        btnBack = (ImageView) findViewById(R.id.btnBack);
 
         CommonVariables.loader = new DataLoader(this, webView, this);
+
         initToolbar();
 
         initViewPagerTab();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name,
-                R.string.app_name);
+                R.string.app_name) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                if (searchLayout.getVisibility() == View.VISIBLE) {
+                    hideSearchView();
+                }
+            }
+
+        };
+        drawerLayout.setDrawerListener(drawerToggle);
         navigationView = (NavigationView) findViewById(R.id.navigationView);
+
         initActionBar();
+
         initDrawer();
+
+        initSearchView();
+
+        initGoogleAdMob();
     }
 
     private void initToolbar() {
@@ -169,17 +200,17 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
     private void initViewPagerTab() {
         days = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
-        int currentDate = calendar.get(Calendar.DATE);
+        int currentDate = calendar.get(Calendar.DAY_OF_YEAR);
         for (int i = 0; i < 8; i++) {
-            calendar.set(Calendar.DATE, currentDate + i);
+            calendar.set(Calendar.DAY_OF_YEAR, currentDate + i);
             days.add(calendar.getTime());
         }
 
         loadForeground = BlackoutItemDao.getScheduleOfDay(CommonVariables.selectedProvince,
-                Constants.DATE_WEB_FORMAT.format(days.get(0))).size() == 0;
+                Constants.DATE_DB_FORMAT.format(days.get(0))).size() == 0;
 
         loadData = BlackoutItemDao.getScheduleOfDay(CommonVariables.selectedProvince,
-                Constants.DATE_WEB_FORMAT.format(days.get(days.size() - 1))).size() == 0;
+                Constants.DATE_DB_FORMAT.format(days.get(days.size() - 1))).size() == 0;
 
         if (!loadData || !loadForeground) {
             scheduleAdapter = new SchedulePagerAdapter(getSupportFragmentManager(), days);
@@ -216,9 +247,27 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
         }
     }
 
+    private void initGoogleAdMob() {
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    private void initSearchView() {
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+    }
+
     @Override
     protected void setListeners() {
         super.setListeners();
+
+        drawerLayout.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                return false;
+            }
+        });
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -257,6 +306,28 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
                         scheduleAdapter.notifyDataSetChanged();
                     }
                 }
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (searchLayout.getVisibility() == View.VISIBLE) {
+                    hideSearchView();
+                }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                hideSearchView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
     }
@@ -305,11 +376,19 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        if (item.getItemId() == R.id.action_load) {
-            if (CommonVariables.loader != null && !CommonVariables.loader.isLoading()) {
-                loadData = true;
-                initData();
-            }
+
+        switch (item.getItemId()) {
+            case R.id.action_load:
+                if (CommonVariables.loader != null && !CommonVariables.loader.isLoading()) {
+                    loadData = true;
+                    initData();
+                }
+                break;
+            case R.id.action_search:
+                searchLayout.setVisibility(View.VISIBLE);
+                searchView.setQuery("", false);
+                searchView.requestFocus();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -419,6 +498,7 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                CommonMethods.clearSharedPref(MainActivity.this);
                                 finish();
                             }
                         });
@@ -470,8 +550,15 @@ public class MainActivity extends BaseActivity implements OnLoadSuccessCallback 
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawers();
+        } else if (searchLayout.getVisibility() == View.VISIBLE) {
+            hideSearchView();
         } else {
             super.onBackPressed();
         }
     }
+
+    private void hideSearchView() {
+        searchLayout.setVisibility(View.GONE);
+    }
+
 }

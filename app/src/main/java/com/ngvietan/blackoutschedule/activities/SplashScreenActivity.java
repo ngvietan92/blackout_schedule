@@ -1,14 +1,15 @@
 package com.ngvietan.blackoutschedule.activities;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 
 import com.ngvietan.blackoutschedule.R;
 import com.ngvietan.blackoutschedule.common.CommonMethods;
 import com.ngvietan.blackoutschedule.common.CommonVariables;
 import com.ngvietan.blackoutschedule.common.Constants;
+import com.ngvietan.blackoutschedule.data.BlackoutItemDao;
 import com.ngvietan.blackoutschedule.data.DistrictDao;
 import com.ngvietan.blackoutschedule.data.ProvinceDao;
 import com.ngvietan.blackoutschedule.dialogs.ProvinceDialog;
@@ -99,6 +100,7 @@ public class SplashScreenActivity extends BaseActivity {
             };
             handler.postDelayed(runnable, 3000);
         }
+        BlackoutItemDao.deleteOldSchedule();
     }
 
     private void showDialogProvince() {
